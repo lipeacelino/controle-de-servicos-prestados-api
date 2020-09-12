@@ -1,4 +1,4 @@
-package io.github.lipeacelino.agenda.domain;
+package io.github.lipeacelino.agenda.domain.entities;
 
 import lombok.*;
 
