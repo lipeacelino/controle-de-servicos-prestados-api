@@ -19,6 +19,12 @@ public class Cliente {
     @Column(length = 11, nullable = false)
     private String cpf;
 
+    @Column(name = "data_cadastro")
     private LocalDate dataCadastro;
+
+    @PrePersist
+    public void setData() {
+        this.dataCadastro = LocalDate.now();
+    }
 
 }
