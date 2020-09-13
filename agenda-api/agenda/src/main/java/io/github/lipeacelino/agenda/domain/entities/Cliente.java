@@ -5,8 +5,10 @@ import lombok.*;
 import javax.persistence.*;
 import java.time.LocalDate;
 
+@Builder
 @Entity
 @Data
+@NoArgsConstructor
 public class Cliente {
 
     @Id

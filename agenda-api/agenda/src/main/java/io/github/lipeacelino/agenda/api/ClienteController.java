@@ -15,7 +15,7 @@ public class ClienteController {
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public Cliente getClienteById(@PathVariable Integer id){
+    public Cliente getClienteById(@PathVariable Integer id) {
         return clienteService.getClienteById(id);
     }
 
@@ -23,6 +23,18 @@ public class ClienteController {
     @ResponseStatus(HttpStatus.CREATED)
     public void addCliente(@RequestBody Cliente c) {
         clienteService.addCliente(c);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteCliente(@PathVariable Integer id) {
+        clienteService.deleteCliente(id);
+    }
+
+    @PutMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void updateCliente(@PathVariable Integer id, @RequestParam Cliente c) {
+        clienteService.updateCliente(id, c);
     }
 
 }

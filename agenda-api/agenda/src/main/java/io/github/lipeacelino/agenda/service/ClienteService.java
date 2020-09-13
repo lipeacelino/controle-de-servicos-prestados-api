@@ -3,14 +3,9 @@ package io.github.lipeacelino.agenda.service;
 import io.github.lipeacelino.agenda.domain.entities.Cliente;
 import io.github.lipeacelino.agenda.domain.repositories.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.server.ResponseStatusException;
-
-import java.util.List;
-import java.util.NoSuchElementException;
 
 @Service
 public class ClienteService {
@@ -23,6 +18,19 @@ public class ClienteService {
     }
 
     public Cliente getClienteById(Integer id) {
-        return rep.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        ResponseStatusException rs = new ResponseStatusException(HttpStatus.NOT_FOUND);
+        return rep.findById(id).orElseThrow(() -> {return rs;});
     }
+
+    public void deleteCliente(Integer id) {
+        rep.delete(rep.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND)));
+    }
+
+    public void updateCliente(Integer id, Cliente c) {
+        rep.save(rep.findById(id)
+                .map(clienteBd -> clienteBd.builder().nome(c.getNome()).cpf(c.getCpf()).build())
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND)));
+    }
+
 }
