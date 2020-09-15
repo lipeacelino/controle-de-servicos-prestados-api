@@ -32,5 +32,4 @@ public class ClienteService {
                 .map(clienteBd -> clienteBd.builder().nome(c.getNome()).cpf(c.getCpf()).build())
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND)));
     }
-
 }

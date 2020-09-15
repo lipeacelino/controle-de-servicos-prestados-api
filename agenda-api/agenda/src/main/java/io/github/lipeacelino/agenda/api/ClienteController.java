@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("v1/api/clientes")
 public class ClienteController {
@@ -21,7 +23,7 @@ public class ClienteController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void addCliente(@RequestBody Cliente c) {
+    public void addCliente(@Valid @RequestBody Cliente c) {
         clienteService.addCliente(c);
     }
 
@@ -33,8 +35,7 @@ public class ClienteController {
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void updateCliente(@PathVariable Integer id, @RequestParam Cliente c) {
+    public void updateCliente(@Valid @PathVariable Integer id, @RequestParam Cliente c) {
         clienteService.updateCliente(id, c);
     }
-
 }
