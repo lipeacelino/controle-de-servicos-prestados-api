@@ -20,12 +20,12 @@ public class Cliente {
     private Integer id;
 
     @Column(length = 150, nullable = false)
-    @NotBlank
+    @NotBlank(message = "{campo.nome.blank}")
     private String nome;
 
     @Column(length = 11, nullable = false)
-    @NotNull
-    @CPF
+    @NotNull(message = "{campo.cpf.null}")
+    @CPF(message = "{campo.cpf.invalido}")
     private String cpf;
 
     @Column(name = "data_cadastro", updatable = false)
