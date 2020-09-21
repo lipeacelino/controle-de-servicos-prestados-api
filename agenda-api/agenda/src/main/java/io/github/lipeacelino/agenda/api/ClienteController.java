@@ -1,6 +1,7 @@
 package io.github.lipeacelino.agenda.api;
 
 import io.github.lipeacelino.agenda.domain.entities.Cliente;
+import io.github.lipeacelino.agenda.exception.ClienteNotFoundException;
 import io.github.lipeacelino.agenda.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,9 +24,7 @@ public class ClienteController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void addCliente(@Valid @RequestBody Cliente c) {
-        clienteService.addCliente(c);
-    }
+    public void addCliente(@Valid @RequestBody Cliente c) { clienteService.addCliente(c); }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)

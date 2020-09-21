@@ -2,10 +2,13 @@ package io.github.lipeacelino.agenda.service;
 
 import io.github.lipeacelino.agenda.domain.entities.Cliente;
 import io.github.lipeacelino.agenda.domain.repositories.ClienteRepository;
+import io.github.lipeacelino.agenda.exception.ClienteNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
+
+import java.text.SimpleDateFormat;
 
 @Service
 public class ClienteService {
@@ -18,18 +21,18 @@ public class ClienteService {
     }
 
     public Cliente getClienteById(Integer id) {
-        ResponseStatusException rs = new ResponseStatusException(HttpStatus.NOT_FOUND);
+        ClienteNotFoundException rs = new ClienteNotFoundException("Cliente não encontrado.");
         return rep.findById(id).orElseThrow(() -> {return rs;});
     }
 
     public void deleteCliente(Integer id) {
         rep.delete(rep.findById(id)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND)));
+                .orElseThrow(() -> new ClienteNotFoundException("Cliente não encontrado.")));
     }
 
     public void updateCliente(Integer id, Cliente c) {
         rep.save(rep.findById(id)
                 .map(clienteBd -> clienteBd.builder().nome(c.getNome()).cpf(c.getCpf()).build())
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND)));
+                .orElseThrow(() -> new ClienteNotFoundException("Cliente não encontrado.")));
     }
 }
