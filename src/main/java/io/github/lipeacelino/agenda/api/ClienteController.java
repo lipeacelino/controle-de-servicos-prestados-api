@@ -10,7 +10,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("v1/api/clientes")
+@RequestMapping("api/clientes")
+@CrossOrigin("http://localhost:4200")
 public class ClienteController {
 
     @Autowired
