@@ -1,14 +1,13 @@
 package io.github.lipeacelino.agenda.service;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import io.github.lipeacelino.agenda.domain.entities.Cliente;
 import io.github.lipeacelino.agenda.domain.repositories.ClienteRepository;
 import io.github.lipeacelino.agenda.exception.ClienteNotFoundException;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
-
-import java.text.SimpleDateFormat;
 
 @Service
 public class ClienteService {
@@ -16,8 +15,8 @@ public class ClienteService {
     @Autowired
     private ClienteRepository rep;
 
-    public void addCliente(Cliente c) {
-        rep.save(c);
+    public Cliente addCliente(Cliente c) {
+        return rep.save(c);
     }
 
     public Cliente getClienteById(Integer id) {
@@ -35,4 +34,9 @@ public class ClienteService {
                 .map(clienteBd -> clienteBd.builder().nome(c.getNome()).cpf(c.getCpf()).build())
                 .orElseThrow(() -> new ClienteNotFoundException("Cliente não encontrado.")));
     }
+
+	public List<Cliente> getClientes() {
+		return rep.findAll();
+	}
+    
 }

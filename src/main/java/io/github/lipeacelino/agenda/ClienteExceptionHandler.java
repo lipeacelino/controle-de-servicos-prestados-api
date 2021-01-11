@@ -1,22 +1,19 @@
 package io.github.lipeacelino.agenda;
 
-import io.github.lipeacelino.agenda.exception.ClienteNotFoundDetails;
-import io.github.lipeacelino.agenda.exception.ClienteNotFoundException;
-import io.github.lipeacelino.agenda.exception.ValidacaoErroDetails;
-import io.github.lipeacelino.agenda.exception.ValidacaoErroException;
-import org.apache.coyote.Response;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.MethodArgumentNotValidException;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.RestControllerAdvice;
-
-import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+import io.github.lipeacelino.agenda.exception.ClienteNotFoundDetails;
+import io.github.lipeacelino.agenda.exception.ClienteNotFoundException;
+import io.github.lipeacelino.agenda.exception.ValidacaoErroDetails;
 
 @RestControllerAdvice
 public class ClienteExceptionHandler {
