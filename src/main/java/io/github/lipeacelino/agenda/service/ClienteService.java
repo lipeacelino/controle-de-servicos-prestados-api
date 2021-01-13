@@ -30,9 +30,11 @@ public class ClienteService {
     }
 
     public void updateCliente(Integer id, Cliente c) {
-        rep.save(rep.findById(id)
-                .map(clienteBd -> clienteBd.builder().nome(c.getNome()).cpf(c.getCpf()).build())
-                .orElseThrow(() -> new ClienteNotFoundException("Cliente não encontrado.")));
+       rep.save(rep.findById(id).map(clienteBd -> {
+    	   clienteBd.setNome(c.getNome());
+    	   clienteBd.setCpf(c.getCpf());
+    	   return clienteBd;
+       }).orElseThrow(() -> new ClienteNotFoundException("Cliente não encontrado.")));
     }
 
 	public List<Cliente> getClientes() {
