@@ -1,4 +1,4 @@
-package io.github.lipeacelino.agenda;
+package io.github.lipeacelino.agenda.exception;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -10,10 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-
-import io.github.lipeacelino.agenda.exception.ClienteNotFoundDetails;
-import io.github.lipeacelino.agenda.exception.ClienteNotFoundException;
-import io.github.lipeacelino.agenda.exception.ValidacaoErroDetails;
 
 @RestControllerAdvice
 public class ClienteExceptionHandler {
