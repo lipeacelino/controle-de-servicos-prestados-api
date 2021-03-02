@@ -3,6 +3,7 @@ package io.github.lipeacelino.agenda.service;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,6 +36,10 @@ public class ServicoPrestadoService {
 				
 				
 		return repository.save(servicoPrestado);
+	}
+
+	public List<ServicoPrestado> pesquisarServico(String nome, Integer mes) {
+		return repository.findByNomeAndMes("%"+nome+"%", mes);
 	}
 
 }
